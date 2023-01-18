@@ -7,7 +7,7 @@ export default class Playlist extends React.Component {
     render() {
         return <div class="Playlist">
         <input defaultValue={'New Playlist'}/>
-        <TrackList></TrackList>
+        {/*<TrackList></TrackList>*/}
         <button className="Playlist-save">SAVE TO SPOTIFY</button>
       </div>
     }

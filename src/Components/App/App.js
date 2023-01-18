@@ -4,7 +4,7 @@ import SearchBar from '../SearchBar/SearchBar.js'
 import SearchResults from '../SearchResults/SearchResults.js'
 import Playlist from '../Playlist/Playlist.js'
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { searchResults: [{name: 'name1', artist: 'artist1', album: 'album1', id: 1}]}
@@ -24,4 +24,4 @@ export default class App extends React.Component {
   );
 }};
 
-
+export default App;

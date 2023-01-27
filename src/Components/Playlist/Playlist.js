@@ -1,7 +1,6 @@
 import React from "react";
 import "./Playlist.css";
 import TrackList from "../TrackList/TrackList.js";
-import { Track } from "../Track/Track";
 
 export default class Playlist extends React.Component {
   constructor(props) {
@@ -15,7 +14,7 @@ export default class Playlist extends React.Component {
 
   render() {
     return (
-      <div class="Playlist">
+      <div className="Playlist">
         <input defaultValue={"New Playlist"} onChange={this.handleNameChange} />
         <TrackList
           tracks={this.props.playlistTracks}

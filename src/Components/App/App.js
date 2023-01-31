@@ -13,9 +13,10 @@ class App extends React.Component {
       searchResults: [],
       playlistName: "My Playlist",
       playlistTracks: [],
+      seed_tracks: [],
       recommendations: [
-        { name: "name1", artist: "artist 1", album: "album 1", uri: "uri 1" },
-        { name: "name2", artist: "artist 2", album: "album 2", uri: "uri 2" },
+        //* { name: "name1", artist: "artist 1", album: "album 1", uri: "uri 1" },
+        //* { name: "name2", artist: "artist 2", album: "album 2", uri: "uri 2" },
       ],
     };
     this.addTrack = this.addTrack.bind(this);
@@ -31,6 +32,7 @@ class App extends React.Component {
       return;
     }
     tracks.push(track);
+
     this.setState({ playlistTracks: tracks });
   }
 
@@ -62,6 +64,12 @@ class App extends React.Component {
     });
   }
 
+  getRecommendations(tracks) {
+    Spotify.getRecommendations(tracks).then((recommendations) => {
+      this.setState({ recommendations: recommendations });
+    });
+  }
+
   render() {
     return (
       <div>
@@ -83,8 +91,10 @@ class App extends React.Component {
               onSave={this.savePlaylist}
             />
             <Recommendations
-              searchResults={this.state.recommendations}
+              playlistTracks={this.state.playlistTracks}
+              recommendations={this.state.recommendations}
               onAdd={this.addTrack}
+              onRecommend={this.getRecommendations}
             ></Recommendations>
           </div>
         </div>

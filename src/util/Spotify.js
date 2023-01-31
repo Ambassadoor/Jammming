@@ -74,5 +74,6 @@ const Spotify = {
           });
       });
   },
+  getRecommendations() {},
 };
 export default Spotify;

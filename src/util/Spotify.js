@@ -76,14 +76,15 @@ const Spotify = {
   },
   getRecommendations(tracks) {
     const accessToken = Spotify.getAccessToken();
-    let seed_tracks = "";
 
-    if (seed_tracks) {
-      seed_tracks = `&seed_tracks=${tracks}`;
+    let seed_tracks = `${JSON.stringify(tracks[0].id)}`;
+
+    for (let i = 1; i < tracks.length; i++) {
+      seed_tracks += `%2C${JSON.stringify(tracks[i].id)}`;
     }
-
+    seed_tracks = seed_tracks.replace(/"/g, "");
     return fetch(
-      `https://api.spotify.com/v1/recommendations?limit=25&market=ES&${seed_tracks}`,
+      `https://api.spotify.com/v1/recommendations?limit=25&market=ES&seed_tracks=${seed_tracks}`,
       {
         headers: { Authorization: `Bearer ${accessToken}` },
         method: "GET",
@@ -96,10 +97,10 @@ const Spotify = {
         if (!jsonResponse.tracks) {
           return [];
         }
-        return jsonResponse.tracks.items.map((track) => ({
+        return jsonResponse.tracks.map((track) => ({
           id: track.id,
           name: track.name,
-          artists: tracks.artists[0].name,
+          artist: track.artists[0].name,
           album: track.album.name,
           uri: track.uri,
         }));

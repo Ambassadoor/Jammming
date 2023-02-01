@@ -14,16 +14,14 @@ class App extends React.Component {
       playlistName: "My Playlist",
       playlistTracks: [],
       seed_tracks: [],
-      recommendations: [
-        //* { name: "name1", artist: "artist 1", album: "album 1", uri: "uri 1" },
-        //* { name: "name2", artist: "artist 2", album: "album 2", uri: "uri 2" },
-      ],
+      recommendations: [],
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
+    this.getRecommendations = this.getRecommendations.bind(this);
   }
 
   addTrack(track) {
